@@ -16,6 +16,12 @@ Route::group(['prefix' => 'productos'], function () {
 
     Route::get('/create', 'ProductosController@getCreate');
 
-    Route::get('/edit/{id}', 'ProductosController@getEdit');
+    Route::post('/create', 'ProductosController@postCreate');
+
+    Route::get('edit/{id}', 'ProductosController@getEdit');
+
+    Route::put('edit/{id}', 'ProductosController@putEdit');
+
+    Route::put('changePendiente/{id}', 'ProductosController@changePendiente');
 
 });

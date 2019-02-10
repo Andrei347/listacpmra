@@ -313,19 +313,17 @@ class DatabaseSeeder extends Seeder
         array('Toalla de papel','Limpieza del hogar')
     );
 
-    private static function seedProducto()
+    private static function seedProductos()
     {
         Producto::truncate();
-
+        $i=1;
         foreach( self::$arrayProductos as $producto ) {
+
             $p = new Producto;
-            $p->nombre = $producto['nombre'];
-            $p->precio = $producto['precio'];
-            $p->categoria = $producto['categoria'];
-            $p->imagen = $producto['imagen'];
-            $p->pendiente = $producto['pendiente'];
-            $p->descripcion = $producto['descripcion'];
+            $p->nombre = $producto[0];
+            $p->categoria = $producto[1];
             $p->save();
+
         }
     }
 }
