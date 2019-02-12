@@ -1,27 +1,27 @@
 <?php
 
-Route::get('/', 'HomeController@getHome');
+Route::group(['middelware'=>'auth'], function() {
 
-Route::get('/login', function () {
-    return view('login');
+    Route::get('/', 'HomeController@getHome');
+
+    Route::group(['prefix' => 'productos'], function () {
+
+        Route::get('/', 'ProductosController@getIndex');
+
+        Route::get('/show/{id}', 'ProductosController@getShow');
+
+        Route::get('/create', 'ProductosController@getCreate');
+
+        Route::post('/create', 'ProductosController@postCreate');
+
+        Route::get('edit/{id}', 'ProductosController@getEdit');
+
+        Route::put('edit/{id}', 'ProductosController@putEdit');
+
+        Route::put('changePendiente/{id}', 'ProductosController@changePendiente');
+
+    });
 });
-Route::get('/logout', function () {
-    return view('logout');
-});
-Route::group(['prefix' => 'productos'], function () {
+Auth::routes();
 
-    Route::get('/', 'ProductosController@getIndex');
-
-    Route::get('/show/{id}', 'ProductosController@getShow');
-
-    Route::get('/create', 'ProductosController@getCreate');
-
-    Route::post('/create', 'ProductosController@postCreate');
-
-    Route::get('edit/{id}', 'ProductosController@getEdit');
-
-    Route::put('edit/{id}', 'ProductosController@putEdit');
-
-    Route::put('changePendiente/{id}', 'ProductosController@changePendiente');
-
-});
+Route::get('/home', 'HomeController@index')->name('home');
