@@ -2,7 +2,7 @@
 
 Route::group(['middelware'=>'auth'], function() {
 
-    Route::get('/', 'HomeController@getHome');
+    Route::get('/', 'HomeController@index');
 
     Route::group(['prefix' => 'productos'], function () {
 

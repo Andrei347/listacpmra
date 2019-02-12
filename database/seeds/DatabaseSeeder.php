@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
         public function run() {
         self::seedProductos();
         $this->command->info('Tabla productos inicializada con datos!');
+        self::seedUsers();
+        $this->command->info('Tabla usuario inicializada con datos!');
     }
 
     private static $arrayProductos = array(
@@ -316,7 +318,6 @@ class DatabaseSeeder extends Seeder
     private static function seedProductos()
     {
         Producto::truncate();
-        $i=1;
         foreach( self::$arrayProductos as $producto ) {
 
             $p = new Producto;
@@ -327,4 +328,23 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    private static function seedUsers(){
+
+        User::truncate();
+
+        User::create([
+            'name'=>'Usuario1',
+            'nombre'=>'andrei',
+            'apellidos'=>'saura',
+            'email'=>'usuario1@laravel.com',
+            'password'=>bcrypt('alumno')
+        ]);
+        User::create([
+            'name'=>'Usuario2',
+            'nombre'=>'andrei',
+            'apellidos'=>'saura',
+            'email'=>'usuario2@laravel.com',
+            'password'=>bcrypt('alumno')
+        ]);
+    }
 }
