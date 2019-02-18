@@ -10,10 +10,14 @@ class ProductosController extends Controller
 
 
 
-    public function getIndex(){
+    public function getIndex($cat=null){
 
+        if (isset($cat)){
+            $arrayProducto=Producto::Categorias($cat);
+            return view('productos.index',array('arrayProductos'=>$arrayProducto));
+        }else{
         $arrayProducto=Producto::all();
-        return view('productos.index',array('arrayProductos'=>$arrayProducto));
+        return view('productos.index',array('arrayProductos'=>$arrayProducto));}
     }
 
     public function getShow($id){
@@ -65,6 +69,11 @@ class ProductosController extends Controller
         $producto->save();
         return back();
     }
-    
+
+    public function getCategorias(){
+        $arrayCategorias=Producto::todaslasCategorias();
+        return view('productos.categoria', array('categoria' => $arrayCategorias));
+
+    }
 
 }

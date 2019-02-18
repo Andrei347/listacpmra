@@ -6,11 +6,11 @@ Route::group(['middelware'=>'auth'], function() {
 
     Route::group(['prefix' => 'productos'], function () {
 
-        Route::get('/', 'ProductosController@getIndex');
+        Route::get('create', 'ProductosController@getCreate');
+
+        Route::get('categorias', 'ProductosController@getCategorias');
 
         Route::get('/show/{id}', 'ProductosController@getShow');
-
-        Route::get('/create', 'ProductosController@getCreate');
 
         Route::post('/create', 'ProductosController@postCreate');
 
@@ -19,6 +19,8 @@ Route::group(['middelware'=>'auth'], function() {
         Route::put('edit/{id}', 'ProductosController@putEdit');
 
         Route::put('changePendiente/{id}', 'ProductosController@changePendiente');
+
+        Route::get('/{cat?}', 'ProductosController@getIndex');
 
     });
 });
